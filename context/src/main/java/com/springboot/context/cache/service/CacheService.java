@@ -36,6 +36,11 @@ public interface CacheService {
 
     /**
      * 缓存查询流程说明：
-     *
+     * 当请求进来之后，调用了被Cache系列标记的方法，就会被CacheInterceptor拦截到
+     * 在CacheAspectSupport中执行
+     *  1. 先执行任何的删除缓存的操作，如果有的画
+     *  2. 查找缓存是否存在； 此时会使用 指定的keyGenerator 生成对应的缓存key值，然后在在对应的cache对象中找是否有value值
+     *  3. 如果缓存命中，则跳过添加缓存的步骤，否则将值放入到缓存中
+     *  4. 将缓存值返回
      */
 }
