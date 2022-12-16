@@ -1,6 +1,7 @@
 package com.springboot.context.cache.controller;
 
 import com.springboot.context.cache.service.CacheService;
+import com.springboot.context.cache.service.RedisCacheService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,9 @@ public class CacheController {
 
     @Resource
     private CacheService cacheService;
+
+    @Resource
+    private RedisCacheService redisCacheService;
 
     @GetMapping("test1")
     public String test1(){
@@ -30,5 +34,11 @@ public class CacheController {
     @GetMapping("test4")
     public String test4(){
         return cacheService.caching("放入一个缓存");
+    }
+
+
+    @GetMapping("redis")
+    public String redis(){
+        return redisCacheService.addCache("放入一个缓存");
     }
 }
